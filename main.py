@@ -1,14 +1,14 @@
 # Projeto de fim de seméstre para o curso: "Dança Urbana" da fábrica de cultura
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-from kivy.core.window import Window
+#from kivy.core.window import Window
 from kivy.properties import NumericProperty
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.uix.screenmanager import ScreenManager
 from random import choice
 
-Window.size = (400, 600)
+#Window.size = (400, 600)
 
 
 class Manager(ScreenManager):
