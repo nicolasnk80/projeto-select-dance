@@ -1,14 +1,14 @@
 # Projeto de fim de seméstre para o curso: "Dança Urbana" da fábrica de cultura
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-#from kivy.core.window import Window
+from kivy.core.window import Window
 from kivy.properties import NumericProperty
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.uix.screenmanager import ScreenManager
 from random import choice
 
-#Window.size = (400, 600)
+Window.size = (400, 600)
 
 
 class Manager(ScreenManager):
@@ -17,13 +17,17 @@ class Manager(ScreenManager):
 
 class Home(MDScreen):
     def on_enter(self, *args):
-        Clock.schedule_once(self.screen_dance, 5)
+        Clock.schedule_once(self.screen_dance, 7)
     
     def screen_dance(self, *args):
         MDApp.get_running_app().root.current = "dance"
 
 
 class Dance(MDScreen):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.anterior = ""
 
     def start_process(self, widget, *args):
         widget.angle = 0
@@ -44,7 +48,11 @@ class Dance(MDScreen):
         img = choice(imgs)
         self.ids.myTitle.font_size = 30
 
-        if img == "img1.jpg" :
+        if img == self.anterior :
+            self.back_img()
+            return
+
+        elif img == "img1.jpg" :
             self.ids.myTitle.text = "KICK OUT"
         
         elif img == "img2.jpg" :
@@ -55,16 +63,21 @@ class Dance(MDScreen):
         
         elif img == "img4.jpg" :
             self.ids.myTitle.text = "FOOT WORK"
+        
+        self.anterior = img
 
         self.ids.img.source = "data/breaking/"+img
         self.ids.img.size_hint_x = .7
         self.ids.btn.text = "Restart"
+
+    def back_img(self, *args):
+        self.source_img()
     
     def restart_all(self, *args):
         self.ids.btn.text = "Start"
         self.ids.img.size_hint_x = .5
         self.ids.img.source = "data/clock.png"
-        self.ids.myTitle.text = "Clique em Satart!"
+        self.ids.myTitle.text = "Clique em Start"
         self.ids.myTitle.font_size = 25
 
 

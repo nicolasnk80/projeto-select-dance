@@ -15,7 +15,7 @@
     MDLabel:
         text: "Aguarde..."
         halign: "center"
-        pos_hint: {"center_y": .5}
+        pos_hint: {"center_y": .8}
         font_size: 30
         bold: True
 
@@ -34,16 +34,16 @@
             size_hint_x: .5
             pos_hint: {"center_x": .5, "center_y": 0.15}
             on_release: root.start_process(img)
+            elevation: 20
         MyImg:
             id: img
             source: "data/clock.png"
             allow_stretch: True
             size_hint_x: .5
             pos_hint: {"center_x": .5}
-            
         MDLabel:
             id: myTitle
-            text: "Clique em Satart!"
+            text: "Clique em Start"
             bold: True
             italic: True
             font_size: 25
